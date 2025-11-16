@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>妈妈生日快乐！🎂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            max-width: 500px;
+            width: 100%;
+            padding: 40px 30px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+            position: relative;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .emoji-large {
+            font-size: 80px;
+            animation: bounce 2s infinite;
+            display: inline-block;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        h1 {
+            color: #ff6b9d;
+            font-size: 32px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(to right, #ff6b9d, #ffa07a);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .message {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.8;
+            margin: 20px 0;
+            text-align: left;
+            padding: 0 10px;
+        }
+
+        .message p {
+            margin: 15px 0;
+        }
+
+        .highlight {
+            color: #ff6b9d;
+            font-weight: bold;
+        }
+
+        .funny-section {
+            background: #fff9e6;
+            border-left: 4px solid #ffd700;
+            padding: 15px;
+            margin: 25px 0;
+            border-radius: 8px;
+            font-size: 16px;
+            color: #666;
+            text-align: left;
+        }
+
+        .gratitude {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .hearts {
+            font-size: 30px;
+            margin: 20px 0;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .signature {
+            margin-top: 30px;
+            color: #888;
+            font-size: 16px;
+            font-style: italic;
+        }
+
+        .balloons {
+            position: fixed;
+            font-size: 50px;
+            animation: float 6s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        .balloon1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .balloon2 { top: 20%; right: 15%; animation-delay: 1s; }
+        .balloon3 { bottom: 15%; left: 15%; animation-delay: 2s; }
+        .balloon4 { bottom: 25%; right: 10%; animation-delay: 1.5s; }
+
+        /* 音乐控制按钮 */
+        .music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 107, 157, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .music-control:hover {
+            transform: scale(1.1);
+            background: rgba(255, 107, 157, 1);
+        }
+
+        .music-control.playing {
+            animation: musicPulse 1s infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% { box-shadow: 0 4px 15px rgba(255, 107, 157, 0.4); }
+            50% { box-shadow: 0 4px 25px rgba(255, 107, 157, 0.8); }
+        }
+
+        /* 欢迎提示 */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            animation: fadeIn 0.5s;
+        }
+
+        .welcome-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 400px;
+            animation: scaleIn 0.5s;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .welcome-box h2 {
+            color: #ff6b9d;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-box p {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- 欢迎提示 -->
+    <div class="welcome-overlay" id="welcomeOverlay">
+        <div class="welcome-box">
+            <h2>🎂 妈妈生日快乐！</h2>
+            <button class="start-btn" onclick="startCard()">🎵 开始</button>
+        </div>
+    </div>
+
+    <!-- 音乐控制按钮 -->
+    <button class="music-control" id="musicBtn" onclick="toggleMusic()" style="display: none;">
+        🎵
+    </button>
+
+    <!-- 音频元素 -->
+    <audio id="bgMusic" loop>
+        <source src="birthday-piano.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="balloons balloon1">🎈</div>
+    <div class="balloons balloon2">🎈</div>
+    <div class="balloons balloon3">🎈</div>
+    <div class="balloons balloon4">🎈</div>
+
+    <div class="card">
+        <div class="emoji-large">🎂</div>
+        <h1>妈妈，生日快乐！</h1>
+        <div class="divider"></div>
+
+        <div class="message">
+            <p>亲爱的妈妈：</p>
+
+            <p>又是一年你的生日，又年轻了一岁！</p>
+        </div>
+
+        <div class="gratitude">
+            <strong>💝 最想对你说的话：</strong><br><br>
+            谢谢你，一直都在<br><br>
+            <span class="highlight">妈妈，有你真好！</span>
+        </div>
+
+        <div class="message">
+            <p>回头请您吃大餐！🍱🥘🍰</p>
+
+            <p>（到时候您可别说"别乱花钱"啊！）</p>
+        </div>
+
+        <div class="hearts">❤️💕💖💗</div>
+
+        <div class="message">
+            <p><strong>祝妈妈：</strong></p>
+            <p>🌸 青春永驻，越活越年轻</p>
+            <p>😊 天天开心，笑口常开</p>
+            <p>💪 身体健康，吃嘛嘛香</p>
+            <p>🎉 心想事成，万事如意</p>
+        </div>
+
+        <div class="signature">
+            爱您的孩子<br>
+            2025年
+        </div>
+    </div>
+
+    <script>
+        const music = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('musicBtn');
+        const welcomeOverlay = document.getElementById('welcomeOverlay');
+        let isPlaying = false;
+
+        // 开始贺卡
+        function startCard() {
+            welcomeOverlay.style.display = 'none';
+            musicBtn.style.display = 'flex';
+
+            // 播放音乐
+            music.play().catch(e => {
+                console.log('自动播放失败，需要用户手动播放');
+            });
+            isPlaying = true;
+            musicBtn.classList.add('playing');
+
+            // 开始飘心动画
+            heartInterval = setInterval(createHeart, 800);
+        }
+
+        // 切换音乐播放
+        function toggleMusic() {
+            if (isPlaying) {
+                music.pause();
+                musicBtn.innerHTML = '🔇';
+                musicBtn.classList.remove('playing');
+            } else {
+                music.play();
+                musicBtn.innerHTML = '🎵';
+                musicBtn.classList.add('playing');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // 创建飘落的心形
+        let heartInterval;
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = '-50px';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            heart.style.opacity = Math.random();
+            heart.style.zIndex = '999';
+            heart.style.pointerEvents = 'none';
+            document.body.appendChild(heart);
+
+            let pos = -50;
+            const interval = setInterval(() => {
+                pos += 2;
+                heart.style.top = pos + 'px';
+                if (pos > window.innerHeight) {
+                    clearInterval(interval);
+                    heart.remove();
+                }
+            }, 50);
+        }
+    </script>
+</body>
+</html>
